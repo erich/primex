@@ -1,18 +1,16 @@
 defmodule Foodies do
-  @moduledoc """
-  Documentation for Foodies.
-  """
+  use Application
 
-  @doc """
-  Hello world.
+  def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+    children = [
+      worker(Foodies.PeriodicTasks, []),
+      worker(Foodies.KeyValue, []),
+      worker(Foodies.SlackRtm, [System.get_env("SLACK_TOKEN")])
+    ]
+    opts = [strategy: :one_for_one, name: Foodies.Supervisor]
 
-  ## Examples
-
-      iex> Foodies.hello
-      :world
-
-  """
-  def hello do
-    :world
+    Supervisor.start_link(children, opts)
   end
+
 end
