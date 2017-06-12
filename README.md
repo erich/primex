@@ -1,6 +1,6 @@
 # Foodies
 
-**TODO: Add description**
+Slack bot for primehammer
 
 ## Installation
 
