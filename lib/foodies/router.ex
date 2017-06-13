@@ -12,4 +12,10 @@ defmodule Foodies.Router do
     conn
     |> send_resp(200, "Primex")
   end
+
+  match _ do
+    conn
+    |> send_resp(404, "Nothing here")
+    |> halt
+  end
 end
