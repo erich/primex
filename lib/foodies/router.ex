@@ -4,8 +4,8 @@ defmodule Foodies.Router do
   plug :match
   plug :dispatch
 
-  def start_link do
-    Plug.Adapters.Cowboy.http(Foodies.Router, [])
+  def start_link(port) do
+    Plug.Adapters.Cowboy.http(Foodies.Router, [], port)
   end
 
   get "/" do
