@@ -1,20 +1,21 @@
 defmodule Foodies.PeriodicTasks do
-	use GenServer
+  use GenServer
 
-	def start_link do
-		GenServer.start_link(__MODULE__, %{})
-	end
+  def start_link do
+    GenServer.start_link(__MODULE__, %{})
+  end
 
-	def init(state) do
-		Process.send_after(self(), :work, 60 * 1000) # In 1 minute
-		{:ok, state}
-	end
+  def init(state) do
+    Process.send_after(self(), :work, 10 * 60 * 1000) # In 10 minutes
+    {:ok, state}
+  end
 
-	def handle_info(:work, state) do
-      Foodies.Persistence.update()
-			# Start the timer again
-			Process.send_after(self(), :work, 60 * 1000) # 1 minute
+  def handle_info(:work, state) do
+    Foodies.Persistence.update()
+    Foodies.KeepAlive.ping()
+    # Start the timer again
+    Process.send_after(self(), :work, 10 * 60 * 1000) # In 10 minutes
 
-			{:noreply, state}
-	end
+    {:noreply, state}
+  end
 end
