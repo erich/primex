@@ -6,7 +6,7 @@ defmodule Foodies.SlackRtm do
     Slack.Bot.start_link(SlackRtm, [], token)
   end
 
-  def handle_connect(slack, state) do
+  def handle_connect(_slack, state) do
     {:ok, state}
   end
 
