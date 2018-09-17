@@ -1,7 +1,6 @@
 defmodule Foodies.KeyValue do
-
   def start_link do
-    Agent.start_link(fn -> MapSet.new end, name: __MODULE__)
+    Agent.start_link(fn -> MapSet.new() end, name: __MODULE__)
   end
 
   def put(key, value) do

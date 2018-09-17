@@ -2,12 +2,14 @@ defmodule Foodies.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :foodies,
-     version: "0.1.0",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :foodies,
+      version: "0.1.0",
+      elixir: "~> 1.4",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -15,8 +17,10 @@ defmodule Foodies.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger, :floki, :httpoison, :timex, :slack, :cowboy, :plug],
-     mod: {Foodies, []}]
+    [
+      extra_applications: [:logger, :floki, :httpoison, :timex, :slack, :cowboy, :plug],
+      mod: {Foodies, []}
+    ]
   end
 
   # Dependencies can be Hex packages:
