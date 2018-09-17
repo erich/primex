@@ -6,7 +6,7 @@ defmodule Foodies.Router do
 
   def start_link(port) do
     {port_as_integer, _} = Integer.parse(port)
-    Plug.Adapters.Cowboy.http(Foodies.Router, [], port: port_as_integer)
+    Plug.Adapters.Cowboy2.http(Foodies.Router, [], port: port_as_integer)
   end
 
   get "/" do
