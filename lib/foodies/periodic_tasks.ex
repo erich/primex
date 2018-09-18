@@ -6,7 +6,8 @@ defmodule Foodies.PeriodicTasks do
   end
 
   def init(state) do
-    Process.send_after(self(), :work, 10 * 60 * 1000) # In 10 minutes
+    # In 10 minutes
+    Process.send_after(self(), :work, 10 * 60 * 1000)
     {:ok, state}
   end
 
@@ -14,7 +15,8 @@ defmodule Foodies.PeriodicTasks do
     Foodies.Persistence.update()
     Foodies.KeepAlive.ping()
     # Start the timer again
-    Process.send_after(self(), :work, 10 * 60 * 1000) # In 10 minutes
+    # In 10 minutes
+    Process.send_after(self(), :work, 10 * 60 * 1000)
 
     {:noreply, state}
   end

@@ -8,8 +8,7 @@ defmodule Foodies.KeepAlive do
 
   def current_hour_to_integer do
     {_, formatted_hour} = Timex.format(Timex.now("Europe/Prague"), "%H", :strftime)
-    {integer, _} =Integer.parse(formatted_hour)
+    {integer, _} = Integer.parse(formatted_hour)
     integer
   end
-
 end
