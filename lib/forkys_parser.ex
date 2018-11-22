@@ -1,6 +1,6 @@
 defmodule ForkysParser do
   def get_html do
-    url = 'http://www.forkys.cz/poledni-menu/'
+    url = 'http://www.forkys.eu/poledni-menu/poledni-menu-brno/'
 
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->

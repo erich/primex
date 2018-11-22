@@ -14,6 +14,14 @@ defmodule Foodies.Router do
     |> send_resp(200, "Primex")
   end
 
+  get "/forkys" do
+    %{soup: soup, main_course: main_course} = ForkysParser.get_html()
+
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, "Soup: #{soup}\nMain: #{main_course}")
+  end
+
   match _ do
     conn
     |> send_resp(404, "Nothing here")
